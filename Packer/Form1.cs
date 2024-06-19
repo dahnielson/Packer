@@ -198,7 +198,7 @@ namespace Packer
                         if (greenChannel.Height < height)
                             sampleY = (y / height) * greenChannel.Height;
 
-                        g = greenChannel.GetPixel(sampleX, sampleY).R;
+                        g = greenChannel.GetPixel(sampleX, sampleY).G;
                     }
 
                     if (blueChannel != null)
@@ -211,7 +211,7 @@ namespace Packer
                         if (blueChannel.Height < height)
                             sampleY = (y / height) * blueChannel.Height;
 
-                        b = blueChannel.GetPixel(sampleX, sampleY).R;
+                        b = blueChannel.GetPixel(sampleX, sampleY).B;
                     }
 
                     if (alphaChannel != null)
