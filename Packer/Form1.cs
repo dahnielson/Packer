@@ -1,3 +1,4 @@
+using Packer.Properties;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 
@@ -35,6 +36,7 @@ namespace Packer
 
             if (files != null && files.Any())
             {
+                redBox.BackgroundImage = Resources.checkerboard;
                 redBox.Image = new Bitmap(files[0]);
                 packChannels();
             }
@@ -60,6 +62,7 @@ namespace Packer
 
             if (files != null && files.Any())
             {
+                greenBox.BackgroundImage = Resources.checkerboard;
                 greenBox.Image = new Bitmap(files[0]);
                 packChannels();
             }
@@ -85,6 +88,7 @@ namespace Packer
 
             if (files != null && files.Any())
             {
+                blueBox.BackgroundImage = Resources.checkerboard;
                 blueBox.Image = new Bitmap(files[0]);
                 packChannels();
             }
@@ -110,6 +114,7 @@ namespace Packer
 
             if (files != null && files.Any())
             {
+                alphaBox.BackgroundImage = Resources.checkerboard;
                 alphaBox.Image = new Bitmap(files[0]);
                 packChannels();
             }
@@ -260,6 +265,11 @@ namespace Packer
             blueBox.Image = null;
             alphaBox.Image = null;
             packedBox.Image = null;
+
+            redBox.BackgroundImage = Resources.red;
+            greenBox.BackgroundImage = Resources.green;
+            blueBox.BackgroundImage = Resources.blue;
+            alphaBox.BackgroundImage = Resources.alpha;
         }
 
         private void quitButton_Click(object sender, EventArgs e)
