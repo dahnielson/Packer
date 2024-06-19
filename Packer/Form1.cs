@@ -152,6 +152,8 @@ namespace Packer
                 blueChannel = new Bitmap(blueBox.Image);
             }
 
+            bool greyscale = true;
+
             if (alphaBox.Image != null)
             {
                 if (alphaBox.Image.Width > width)
@@ -159,6 +161,19 @@ namespace Packer
                 if (alphaBox.Image.Height > height)
                     height = alphaBox.Image.Height;
                 alphaChannel = new Bitmap(alphaBox.Image);
+
+                for (int y = 0; y < alphaChannel.Height; y++) 
+                {
+                    for (int x = 0; x < alphaChannel.Width; x++) 
+                    {
+                        Color pixel = alphaChannel.GetPixel(x, y);
+                        if (!(pixel.R == pixel.G && pixel.G == pixel.B && pixel.A == 255))
+                        {
+                            greyscale = false;
+                            break;
+                        }
+                    }
+                }
             }
 
             if (width == 0 || height == 0)
@@ -224,7 +239,10 @@ namespace Packer
                         if (alphaChannel.Height < height)
                             sampleY = (y / height) * alphaChannel.Height;
 
-                        a = alphaChannel.GetPixel(x, y).R;
+                        if (greyscale)
+                            a = alphaChannel.GetPixel(x, y).R;
+                        else
+                            a = alphaChannel.GetPixel(x, y).A;
                     }
 
                     Color packedColor = Color.FromArgb(a, r, g, b);
