@@ -220,7 +220,7 @@ namespace Packer
                         int sampleY = y;
 
                         if (alphaChannel.Width < width)
-                            sampleX = (x / height) * alphaChannel.Width;
+                            sampleX = (x / width) * alphaChannel.Width;
                         if (alphaChannel.Height < height)
                             sampleY = (y / height) * alphaChannel.Height;
 
