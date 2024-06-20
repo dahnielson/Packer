@@ -201,9 +201,9 @@ namespace Packer
                         int sampleY = y;
 
                         if (redChannel.Width < width)
-                            sampleX = (x / width) * redChannel.Width;
+                            sampleX = (int)((x / (double)width) * redChannel.Width);
                         if (redChannel.Height < height)
-                            sampleY = (y / height) * redChannel.Height;
+                            sampleY = (int)((y / (double)height) * redChannel.Height);
                         
                         r = redChannel.GetPixel(sampleX, sampleY).R;
                     }
@@ -214,9 +214,9 @@ namespace Packer
                         int sampleY = y;
 
                         if (greenChannel.Width < width)
-                            sampleX = (x / width) * greenChannel.Width;
+                            sampleX = (int)((x / (double)width) * greenChannel.Width);
                         if (greenChannel.Height < height)
-                            sampleY = (y / height) * greenChannel.Height;
+                            sampleY = (int)((y / (double)height) * greenChannel.Height);
 
                         g = greenChannel.GetPixel(sampleX, sampleY).G;
                     }
@@ -227,9 +227,9 @@ namespace Packer
                         int sampleY = y;
 
                         if (blueChannel.Width < width)
-                            sampleX = (x / width) * blueChannel.Width;
+                            sampleX = (int)((x / (double)width) * blueChannel.Width);
                         if (blueChannel.Height < height)
-                            sampleY = (y / height) * blueChannel.Height;
+                            sampleY = (int)((y / (double)height) * blueChannel.Height);
 
                         b = blueChannel.GetPixel(sampleX, sampleY).B;
                     }
@@ -240,14 +240,14 @@ namespace Packer
                         int sampleY = y;
 
                         if (alphaChannel.Width < width)
-                            sampleX = (x / width) * alphaChannel.Width;
+                            sampleX = (int)((x / (double)width) * alphaChannel.Width);
                         if (alphaChannel.Height < height)
-                            sampleY = (y / height) * alphaChannel.Height;
+                            sampleY = (int)((y / (double)height) * alphaChannel.Height);
 
                         if (greyscale)
-                            a = alphaChannel.GetPixel(x, y).R;
+                            a = alphaChannel.GetPixel(sampleX, sampleY).R;
                         else
-                            a = alphaChannel.GetPixel(x, y).A;
+                            a = alphaChannel.GetPixel(sampleX, sampleY).A;
                     }
 
                     Color packedColor = Color.FromArgb(a, r, g, b);
